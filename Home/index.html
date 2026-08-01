@@ -1,23 +1,256 @@
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Hard Truth: Glow Up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Big+Shoulders+Display:wght@700;900&family=Space+Mono:wght@400;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0a0908;
+    --charcoal:#17140f;
+    --card:#1c1812;
+    --gold:#d9a441;
+    --gold-bright:#f4c968;
+    --crimson:#7a1f1f;
+    --crimson-bright:#b9382f;
+    --cream:#efe9dc;
+    --muted:#9c9482;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--cream);
+    font-family:'Public Sans',sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Big Shoulders Display',sans-serif;font-weight:900;letter-spacing:0.01em;text-transform:uppercase;}
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+  .crack{
+    position:relative;
+    width:3px;
+    height:56px;
+    margin:0 auto;
+    background:linear-gradient(180deg,transparent, var(--gold-bright), transparent);
+    box-shadow:0 0 12px var(--gold-bright), 0 0 28px rgba(217,164,65,0.5);
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:0 24px;}
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyDLdm7vutPj5OcYvFgt2LbHm1HJ0yFrYqw",
-    authDomain: "data4me.firebaseapp.com",
-    projectId: "data4me",
-    storageBucket: "data4me.firebasestorage.app",
-    messagingSenderId: "836568438253",
-    appId: "1:836568438253:web:4e556deff7479203b503e4",
-    measurementId: "G-MR7B01L8B2"
-  };
+  /* HERO */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    background:#000;
+  }
+  .hero-img{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+    object-position:center 15%;
+    opacity:0.92;
+  }
+  .hero-scrim{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(10,9,8,0.15) 0%, rgba(10,9,8,0.35) 45%, rgba(10,9,8,0.97) 92%);
+  }
+  .hero-content{position:relative;z-index:2;padding:0 24px 40px;text-align:center;}
+  .hero h1{
+    font-size:clamp(2.6rem,10vw,3.6rem);
+    line-height:0.95;
+    color:var(--cream);
+    text-shadow:0 4px 24px rgba(0,0,0,0.6);
+  }
+  .hero h1 span{color:var(--gold-bright);}
+  .hero-sub{
+    margin-top:14px;
+    font-size:1.02rem;
+    color:var(--muted);
+    max-width:420px;
+    margin-left:auto;margin-right:auto;
+  }
+  .hero-sub b{color:var(--cream);font-weight:600;}
+  .scrolldown{
+    position:relative;z-index:2;
+    text-align:center;
+    padding-bottom:18px;
+    font-family:'Space Mono',monospace;
+    font-size:0.7rem;
+    letter-spacing:0.15em;
+    color:var(--muted);
+    text-transform:uppercase;
+  }
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+  /* SECTION generic */
+  section{padding:64px 0;}
+  .center{text-align:center;}
+  .section-head{margin-bottom:32px;}
+  .section-head h2{font-size:clamp(1.8rem,7vw,2.3rem);color:var(--cream);margin-top:10px;}
+  .section-head p{color:var(--muted);margin-top:12px;font-size:0.98rem;}
+
+  /* NAME THE PAIN */
+  .pain-list{list-style:none;margin-top:28px;}
+  .pain-list li{
+    padding:20px 0;
+    border-bottom:1px solid rgba(217,164,65,0.15);
+    font-size:1.08rem;
+    color:var(--cream);
+    display:flex;
+    gap:14px;
+    align-items:baseline;
+  }
+  .pain-list li:first-child{border-top:1px solid rgba(217,164,65,0.15);}
+  .pain-list .no{
+    font-family:'Space Mono',monospace;
+    color:var(--crimson-bright);
+    font-size:0.85rem;
+    flex-shrink:0;
+  }
+
+  /* GAP / before-after */
+  .gap-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2px;
+    margin-top:32px;
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .gap-col{padding:26px 18px;}
+  .gap-col.now{background:var(--charcoal);}
+  .gap-col.next{background:linear-gradient(160deg, #241c0d, #17140f);}
+  .gap-col .tag{font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;}
+  .gap-col.now .tag{color:var(--muted);}
+  .gap-col.next .tag{color:var(--gold-bright);}
+  .gap-col ul{list-style:none;margin-top:16px;}
+  .gap-col li{font-size:0.92rem;padding:7px 0;color:var(--cream);opacity:0.85;}
+  .gap-col.next li{opacity:1;}
+
+  /* CONTENTS */
+  .contents-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:1px;
+    margin-top:28px;
+    background:rgba(217,164,65,0.15);
+  }
+  .content-item{
+    background:var(--black);
+    padding:18px 20px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .content-item .num{
+    font-family:'Space Mono',monospace;
+    color:var(--gold);
+    font-size:0.85rem;
+    width:26px;
+    flex-shrink:0;
+  }
+  .content-item .label{font-size:1rem;color:var(--cream);font-weight:600;}
+  .content-item .desc{display:block;font-size:0.82rem;color:var(--muted);font-weight:400;margin-top:2px;}
+
+  /* QUOTES */
+  .quote-block{
+    margin-top:24px;
+    padding:28px 24px;
+    background:var(--card);
+    border-left:3px solid var(--gold);
+    position:relative;
+  }
+  .quote-block p{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:700;
+    font-size:1.3rem;
+    line-height:1.25;
+    color:var(--cream);
+    text-transform:none;
+  }
+  .quote-block + .quote-block{margin-top:14px;}
+
+  /* URGENCY / WITHDRAW */
+  .withdraw{
+    background:linear-gradient(160deg, var(--crimson) 0%, #4a1414 100%);
+    padding:52px 0;
+  }
+  .withdraw .wrap{text-align:center;}
+  .withdraw h2{color:var(--cream);font-size:clamp(1.6rem,7vw,2.1rem);}
+  .withdraw p{color:rgba(239,233,220,0.85);margin-top:14px;font-size:0.98rem;max-width:440px;margin-left:auto;margin-right:auto;}
+
+  /* CTA button */
+  .cta{
+    display:inline-block;
+    margin-top:28px;
+    padding:18px 40px;
+    background:linear-gradient(135deg, var(--gold-bright), var(--gold));
+    color:#171208;
+    font-family:'Space Mono',monospace;
+    font-weight:700;
+    font-size:0.92rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    text-decoration:none;
+    border-radius:2px;
+    box-shadow:0 8px 30px rgba(217,164,65,0.35);
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .cta:active{transform:scale(0.97);}
+  .cta-sub{display:block;margin-top:14px;font-size:0.78rem;color:var(--muted);font-family:'Space Mono',monospace;letter-spacing:0.05em;}
+  .withdraw .cta-sub{color:rgba(239,233,220,0.6);}
+
+  footer{
+    padding:36px 24px 48px;
+    text-align:center;
+    font-size:0.78rem;
+    color:var(--muted);
+    font-family:'Space Mono',monospace;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ META PIXEL / DATASET BASE CODE ============ -->
+<!-- Replace YOUR_PIXEL_ID_HERE below with your actual Pixel/Dataset ID from Events Manager -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2006617669971735');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2006617669971735&ev=PageView&noscript=1"
+/></noscript>
+<!-- ============ END META PIXEL CODE ============ -->
+
+<!-- ============ EDIT THIS: your Paystack checkout link ============ -->
+<script>
+  const CHECKOUT_URL = "https://paystack.com/buy/the-hard-truth-glow-up-ctbquu";
+  function goToCheckout(source){
+    if (typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', {content_name:'The Hard Truth: Glow Up', source:source});
+    }
+    window.location.href = CHECKOUT_URL;
+  }
 </script>
